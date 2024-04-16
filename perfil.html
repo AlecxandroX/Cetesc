@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Editar Perfil</title>
+</head>
+<body>
+  <h1>Editar Perfil</h1>
+  <form action="editar_perfil.php" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
+    <label for="username">Nome de usuário:</label>
+    <input type="text" name="username" value="<?php echo $user['username']; ?>">
+    <br>
+    <label for="password">Senha:</label>
+    <input type="password" name="password" value="<?php echo $user['password']; ?>">
+    <br>
+    <label for="foto_coluna">Foto do perfil:</label>
+    <input type="file" name="foto_coluna">
+    <br>
+    <input type="submit" name="submit" value="Salvar">
+  </form>
+</body>
+</html>

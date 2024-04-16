@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Adicionando Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Adicionando Font Awesome (para ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Adicionando CSS personalizado -->
+    <style>
+       body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('login.jpg');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #ffffff; /* Cor do texto */
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Fundo semi-transparente */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff; /* Cor do título */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            border-radius: 20px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 20px;
+            width: 100%;
+            display: block;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-3 {
+            margin-top: 20px;
+        }
+
+        .promo-text {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            text-align: center; /* Alinhamento centralizado */
+            margin-bottom: 10px; /* Espaçamento inferior */
+        }
+        .registro{
+            color:#000;
+            font-size: 1.1rem;
+            line-height: 1.0;
+            text-align: center; /* Alinhamento centralizado */
+            margin-bottom: 10px; /* Espaçamento inferior */
+        }
+
+        /* Ajustes para o botão de registro */
+        .btn-register {
+            font-size: 0.7rem; /* Tamanho da fonte reduzido */
+            padding: 1px 6px; /* Padding reduzido */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Login</h2>
+    <form action="login.php" method="POST">
+        <div class="form-group">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Nome de usuário" required>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Senha" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <div class="text-center mt-3">
+        <p class="registro">Ainda não tem uma conta?</p>
+        <a href="register.php" class="btn btn-primary btn-register">Registre-se agora</a> <!-- Adicionei a classe btn-register para ajustar o tamanho -->
+    </div>
+</div>
+
+<div class="text-center mt-3">
+    <p class="promo-text">Experimente nosso sistema agora e simplifique sua vida!</p>
+    <p class="promo-text">Acesso rápido e seguro para gerenciar suas tarefas.</p>
+    <p class="promo-text">Nunca foi tão fácil manter-se organizado.</p>
+</div>
+
+<?php
+// Configuração do banco de dados (substitua com suas próprias informações)
+$host = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'curso';
+
+// Conexão com o banco de dados
+$conn = new mysqli($host, $username, $password, $database);
+
+// Verifica se houve erro na conexão
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Processa o formulário de login quando enviado
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Verifica se o usuário existe
+    $check_query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+    $check_result = $conn->query($check_query);
+    if ($check_result->num_rows > 0) {
+        // Usuário encontrado, iniciar sessão
+        session_start();
+        $_SESSION['username'] = $username;
+        header("Location: dashboard.php");
+        exit();
+    } else {
+        echo "<script>alert('Login failed. Please check your username and password.')</script>";
+    }
+}
+
+// Fecha a conexão com o banco de dados
+$conn->close();
+?>
+
+</body>
+</html>
