@@ -1,0 +1,48 @@
+ body {
+      background-color: #f8f9fa;
+    }
+    .navbar {
+      background-color: #343a40 !important;
+    }
+    .jumbotron {
+      background-color: #ffffff;
+      padding: 2rem 1rem;
+      margin-bottom: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .jumbotron h1,
+    .jumbotron p {
+      color: #343a40;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+      font-size: 1.5rem;
+      padding: 20px 40px;
+      margin-right: 20px;
+      border-radius: 10px;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+    .btn-icon {
+      font-size: 2rem;
+      margin-right: 10px;
+    }
+    .contact-form {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .profile-picture {
+        width: 40px; /* Defina o tamanho desejado */
+        height: 40px; /* Defina o tamanho desejado */
+        border-radius: 50%; /* Isso garante que a imagem seja exibida como um círculo */
+        object-fit: cover; /* Faz com que a imagem cubra o espaço disponível */
+        object-position: center; /* Centraliza verticalmente a imagem */
+        margin-right: 5px; /* Ajuste o espaçamento à direita conforme necessário */
+    }
+    
